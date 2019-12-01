@@ -74,10 +74,10 @@ def addpoi(request):
 #         form = MyPoiRecordForm()
 #     return render(request, 'POI_Record/addpoiusingform.html', {'form': form})
 
-poi_name=[]
-base_dir = os.getcwd()+"\POI"
+# poi_name=[]
+# base_dir = os.getcwd()+"\POI"
 
-media_path=os.getcwd()+"/media/POI/uploads"
+# media_path=os.getcwd()+"/media/POI/uploads"
 def embeddings(request):
     # for e in MyPoiRecord.objects.all():
     #     poi_name.append(e.name.split()[0])
