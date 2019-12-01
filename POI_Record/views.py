@@ -9,21 +9,21 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from POI_Record.forms import MyPoiRecordForm
 #embedding calculate libraries
-from imutils import paths
-import numpy as np
-import imutils
-import pickle
-import cv2
-import os
-from threading import Thread
-from keras.models import load_model
-from numpy import asarray, expand_dims
-from PIL import Image
-name = "akash"
-import glob
-from sklearn.preprocessing import LabelEncoder
-from sklearn.svm import SVC
-import pickle
+# from imutils import paths
+# import numpy as np
+# import imutils
+# import pickle
+# import cv2
+# import os
+# from threading import Thread
+# from keras.models import load_model
+# from numpy import asarray, expand_dims
+# from PIL import Image
+# name = "akash"
+# import glob
+# from sklearn.preprocessing import LabelEncoder
+# from sklearn.svm import SVC
+# import pickle
 
 
 
