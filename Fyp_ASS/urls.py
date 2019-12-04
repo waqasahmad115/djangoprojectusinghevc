@@ -39,8 +39,9 @@ from rest_framework_jwt.views import ObtainJSONWebToken
 router=routers.DefaultRouter()
 router.register(r'profile',user_views.ProfileViewSet)
 router.register(r'securitypersonnel',user_views.SecurityPersonnelViewSet)
+
 router.register(r'MyPoiRecord',user_views.MyPoiRecordViewSet)
-router.register(r'user',user_views.UserViewSet)
+#router.register(r'user',user_views.UserViewSet)
 router.register(r'MyDetected_Poi',user_views.MyDetected_PoiViewSet)
 #router.register(r'OnlineUser',user_views.OnlineUserViewSet)
 app_name="camera"
@@ -76,12 +77,17 @@ urlpatterns = [
     ),
    #path('base/',user_views.base,name='base'),
     path('',user_views.base,name='base'),
+    # path('users/',
+    #     user_views.SecurityPersonnelView.as_view()),
+
     url(r'^jet/', include('jet.urls', 'jet')),  
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')), 
     path('',include('camera.urls')),
     path('',include('POI_Record.urls')),
 #   path('messages/', include('chat.urls')),
     path('vedio/', user_views.vedio, name='vedio'),
+    path('hevcvedio/', user_views.hevcvedio, name='hevcvedio'),
+   
     path('', user_views.base, name='base'),
     path('signup/', user_views.signup, name='signup'),
    # path('getcamera/', user_views.getcamera),

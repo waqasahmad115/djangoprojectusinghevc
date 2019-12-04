@@ -1,4 +1,4 @@
-from rest_framework import serializers
+from rest_framework import serializers,status
 from django.contrib.auth.models import User
 from .models import Profile,SecurityPersonnel
 from POI_Record.models import MyPoiRecord
@@ -182,10 +182,6 @@ class ProfileSerializer(serializers.ModelSerializer):
             fields="__all__"
 
 
-class SecurityPersonnelSerializer(serializers.ModelSerializer):
-        class Meta:
-            model=SecurityPersonnel
-            fields="__all__"
 class MyPoiRecordSerializer(serializers.ModelSerializer):
         class Meta:
             model=MyPoiRecord
@@ -195,11 +191,8 @@ class MyDetected_PoiSerializer(serializers.ModelSerializer):
             model=MyDetected_Poi
             fields=['detected_image','date','time','poiID']
 
-    
-            
 class UserSerializer(serializers.ModelSerializer):
         #id = SecurityPersonnelSerializerModel()
-        #securitypersonnel = SecurityPersonnelSerializer(many=True)
         class Meta:
             model=User
             fields= ['username','email', 'password']
@@ -208,9 +201,28 @@ class UserSerializer(serializers.ModelSerializer):
         #     contact = SecurityPersonnel.objects.create(**contact_data)
         #     user = User.objects.create(id=contact, **validated_data)
         #     return user
+        # def create(self, validated_data):
+        #     user = User.objects.create_user(**validated_data)
+        #     return user
+
+class SecurityPersonnelSerializer(serializers.ModelSerializer):
+        user = UserSerializer(required=True)
+
+        class Meta:
+            model=SecurityPersonnel
+            fields=['user','phone_number','zone_area','start_time', 'end_time']
+
+        def get(self, format=None):
+            securitypersonnel = SecurityPersonnel.objects.all()
+            serializer = SecurityPersonnelSerializer(SecurityPersonnel, many=True)
+            return Response(serializer.data)
         def create(self, validated_data):
-            user = User.objects.create_user(**validated_data)
-            return user
+            user_data = validated_data.pop('user')
+            user = UserSerializer.create(UserSerializer(), validated_data=user_data)
+            securitypersonnel, created = SecurityPersonnel.objects.update_or_create(user=user,phone_number=validated_data.pop('phone_number'), zone_area=validated_data.pop('zone_area'),start_time=validated_data.pop('start_time'),end_time=validated_data.pop('end_time'))
+            return securitypersonnel
+
+
 # from rest_framework import serializers
 # from.models import User
  
