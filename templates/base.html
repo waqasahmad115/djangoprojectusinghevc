@@ -36,6 +36,10 @@
             </a>
           </div>
           {% if user.is_authenticated %}
+         
+        <a class="nav-item nav-link bg-dark" href="{% url 'hevcvedio' %}"
+          >Hevc Video</a
+        >
           <a class="nav-item nav-link bg-dark" href="{% url 'profile' %}"
             >Profile</a
           >
@@ -54,6 +58,9 @@
           >
           {% else %}
           <ul class="nav navbar-nav">
+              <a class="nav-item nav-link bg-dark" href="{% url 'vedio' %}"
+              >Start WebCam </a
+            >
             <div class="dropdown pr-sm-1 pr-md-3">
               `
               <button
@@ -71,15 +78,9 @@
                 </li>
                 <li>
                   <a class="navbar-link" href="{% url 'register' %}"
-                    >Operator</a
+                    >Control Room Operator</a
                   >
                 </li>
-                <li>
-                  <a class="navbar-link" href="{% url 'vedio' %}"
-                    >Start Camera</a
-                  >
-                </li>
-
               </div>
             </div>
 
