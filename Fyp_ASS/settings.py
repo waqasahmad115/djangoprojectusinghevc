@@ -31,7 +31,7 @@ DEBUG = True
 # for production make below statement uncomment
 #DEBUG=(os.environ.get('DEBUG_VALUE')=='True')
 # for the project deployment mysurveillancesapp.herokuapp.com
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['https://surveillancesystemapps.herokuapp.com']
 EMIAL_HOST='smtp.gmail.com'
 EMIAL_HOST_USER='ec.smtp.test3@gmail.com'
 EMIAL_HOST_PASSWORD='waqas1995' 
@@ -205,7 +205,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
     'DEFAULT_PERMISSION_CLASSES': [
          #'rest_framework.permissions.IsAuthenticated',
-         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+         #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+         #'rest_framework.permissions.DjangoModelPermissions',
+         #'rest_framework.permissions.AllowAny',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
          'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -213,6 +215,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'PAGE_SIZE':2
+    
 }
 
 #Channel setting 
@@ -331,7 +334,7 @@ IMPORT_STRINGS = (
 api_settings = APISettings(USER_SETTINGS, DEFAULTS, IMPORT_STRINGS)
 
 JWT_AUTH = {
- 
+
     'JWT_VERIFY': True,
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
