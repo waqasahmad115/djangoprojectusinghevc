@@ -32,6 +32,7 @@ DEBUG = True
 #DEBUG=(os.environ.get('DEBUG_VALUE')=='True')
 # for the project deployment mysurveillancesapp.herokuapp.com
 ALLOWED_HOSTS = ['https://surveillancesystemapps.herokuapp.com']
+
 EMIAL_HOST='smtp.gmail.com'
 EMIAL_HOST_USER='ec.smtp.test3@gmail.com'
 EMIAL_HOST_PASSWORD='waqas1995' 
